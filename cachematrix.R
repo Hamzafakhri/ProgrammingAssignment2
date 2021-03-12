@@ -3,15 +3,15 @@
 
 ## Write a short comment describing this function
 
-makeCacheMatrix <- function(x = matrix()) {
-  inv <- NULL                            
+makeCacheMatrix <- function(input = matrix()) {
+  invTest <- NULL                            
   set <- function(y) {                   
-    x <<- y                          
-    inv <<- NULL                       
+    input <<- y                          
+    invTest <<- NULL                       
   }
-  get <- function() x                   
+  get <- function() input                   
   setinverse <- function(inverse) inv <<- inverse 
-  getinverse <- function() inv                    
+  getinverse <- function() invTest                    
   list(set = set, get = get, setinverse = setinverse, getinverse = getinverse)
 }
 
