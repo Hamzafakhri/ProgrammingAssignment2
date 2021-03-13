@@ -7,15 +7,18 @@ makeCacheMatrix <- function(input = matrix()) {
   # initialize matrix
   invTest <- NULL       
   
-  #set matrix 
+  # define set function 
   set <- function(y) {                   
     input <<- y                          
     invTest <<- NULL                       
   }
+  # define the get function to retunr the matrix 
   get <- function() input                   
+  # assign inv value in environment 
   setinverse <- function(inverse) inv <<- inverse 
+  # get the inv value 
   getinverse <- function() invTest  
-  # for function get and set 
+  # for function get and set calling
   list(set = set, get = get, setinverse = setinverse, getinverse = getinverse)
 }
 
@@ -23,13 +26,20 @@ makeCacheMatrix <- function(input = matrix()) {
 ## Write a short comment describing this function
 
 cacheSolve <- function(x, ...) {
-  inv <- x$getinverse()
+  
+  # get inverse from previous function 
+  inv <- x$getinverse() 
+  # check if matrix is null
   if(!is.null(inv)) {
     message("getting cached data")
     return(inv)
   }
+  # assign matrix 
   data <- x$get()
+  # solve the matrix
   result <- solve(data, ...)
+  # set result in previous function
   x$setinverse(result)
+  # print the result
   result
 }
